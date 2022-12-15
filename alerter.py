@@ -4,9 +4,8 @@ alert_failure_count = 0
     
 def network_alert_real(celcius):
     if celcius <= 200:
-        return None
-    global alert_failure_count
-    alert_failure_count += 1
+        return 200
+    return 500
       
 def function_pointer(fptr, celcius):
     if fptr == 0:
@@ -15,4 +14,8 @@ def function_pointer(fptr, celcius):
         
 def alert_in_celcius(fptr, farenheit):
     celcius = (farenheit - 32) * 5 / 9
-    function_pointer(fptr, celcius)
+    return_code = function_pointer(fptr, celcius)
+    
+    if return_code != 200:
+        global alert_failure_count
+        alert_failure_count += 1
